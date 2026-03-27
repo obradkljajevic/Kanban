@@ -1,0 +1,131 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:50px;
+    background: linear-gradient(135deg, #1e1e2f, #2b2d42);
+    min-height: 100vh;
+}
+
+.newTask{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    height: 60px;
+    width: 468px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid gray;
+}
+.newTask input{
+    height: 60px;
+    width: 340px;
+    font-size: 18px;
+}
+.newTask button{
+    height: 64px;
+    width: 64px;
+    font-size: 40px;
+    color:white;
+    background-color: #4facfe;
+}
+#restart{
+    height: 64px;
+    color: white;
+    width: 64px;
+    font-size: 40px;
+    font-weight: bold;
+    background: none;
+    border: none;
+}
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: grab;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.taskText {
+    max-width: 140px;      
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.changeName{
+    background: none;
+    font-size: 18px;
+    width: 150px;
+    
+}
+.input2{
+    color: white;
+    font-weight:bold;
+    text-align: center;
+}
+
+.kanbanBoard{
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+.column {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    width: 300px;
+    height: 450px;
+    
+}
+.column h2{
+    color: white;
+    font-weight:bold;
+    text-align: center;
+}
+.dragging{
+    opacity:0.5;
+}
+.deleteBtn{
+    font-size: 20px;
+    border: 0;
+    background: none;
+}
+.editBtn{
+    font-size: 20px;
+    border: 0;
+    background: none;
+}
+.doneBtn{
+    background: none;
+    border: 0;
+    font-size: 24px;
+}
+
+#toDo{
+    background: linear-gradient(120deg, #ff7a7a, #ffb199);
+}
+#priority{
+    background: linear-gradient(120deg, #ffb347, #ffcc33);
+}
+#inProgress{
+    background: linear-gradient(120deg, #4facfe, #00c6ff);
+}
+#done{
+    background: linear-gradient(120deg, #43e97b, #38f9d7);
+}
