@@ -62,8 +62,7 @@ addButton.addEventListener("click", () => {
 
     newTask.value = "";
 
-    newCard.addEventListener('dragstart', () => newCard.classList.add('dragging'));
-    newCard.addEventListener('dragend', () => newCard.classList.remove('dragging'));
+    
 });
 
 const restart = document.getElementById("restart");
@@ -84,11 +83,16 @@ h2.forEach(h => {
     h.appendChild(editBtnH);
 
     editBtnH.addEventListener("click", () => {
+
+    
         const input2 = document.createElement("input");
         input2.type = "text";
-        input2.value = h.textContent; 
+        input2.value = "Enter title"; 
+        input2.classList.add("h2");
+
         h.textContent = "";
         h.appendChild(input2);
+        
         input2.focus();
         input2.classList.add("changeName");
 
@@ -96,6 +100,7 @@ h2.forEach(h => {
             if (e.key === "Enter") {
                 h.textContent = input2.value;
                 h.appendChild(editBtnH);
+                
             }
         });
     });

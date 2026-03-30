@@ -99,7 +99,7 @@ body{
     text-align: center;
 }
 .dragging{
-    opacity:0.5;
+    opacity:0.9;
 }
 .deleteBtn{
     font-size: 20px;
@@ -116,7 +116,11 @@ body{
     border: 0;
     font-size: 24px;
 }
-
+.h2{
+    color: white;
+    font-weight:bold;
+    text-align: center;
+}
 #toDo{
     background: linear-gradient(120deg, #ff7a7a, #ffb199);
 }
