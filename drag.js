@@ -2,6 +2,8 @@
 
 document.addEventListener("dragstart",(e)=>{
     if(e.target.classList.contains("card")){
+
+        if(e.target.closest("#done")) return;
         e.target.classList.add("dragging");
     }
 });

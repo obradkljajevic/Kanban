@@ -58,6 +58,7 @@ body{
     align-items: center;
     
 }
+
 .taskText {
     max-width: 140px;      
     white-space: nowrap;
@@ -120,6 +121,10 @@ body{
     color: white;
     font-weight:bold;
     text-align: center;
+}
+#done .card {
+    color: white;
+    background-color: rgba(100, 255, 180, 0.8);
 }
 #toDo{
     background: linear-gradient(120deg, #ff7a7a, #ffb199);
