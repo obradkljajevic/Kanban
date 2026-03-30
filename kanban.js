@@ -1,10 +1,16 @@
 const addButton = document.getElementById("add");
 const newTask = document.getElementById("newTask");
+const newDesc = document.getElementById("newDescription");
 const toDoList = document.getElementById("toDoList");
 
+//Dodavanje novog taska
 addButton.addEventListener("click", () => {
     const task = newTask.value.trim();
+
+    //Provjera da li je unešen naziv taska, nije obavezan opis
     if (!task) return;
+
+    //Kreiranje kartice sa nazivom, opisom i buttonima
 
     const newCard = document.createElement("div");
     newCard.classList.add("card");
@@ -13,6 +19,10 @@ addButton.addEventListener("click", () => {
     const textSpan = document.createElement("span");
     textSpan.classList.add("taskText");
     textSpan.textContent = task;
+
+    const descSpan = document.createElement("span");
+    descSpan.classList.add("taskDesc");
+    descSpan.textContent = newDesc.value; 
 
     const deleteBtn = document.createElement("button");
     const doneBtn = document.createElement("button");
@@ -32,41 +42,88 @@ addButton.addEventListener("click", () => {
     deleteBtn.classList.add("deleteBtn");
     editBtn.classList.add("editBtn");
     
+    //Delete button kojim se uklanja određena kartica
+
     deleteBtn.addEventListener("click", () => {
         newCard.remove();
     });
 
+    //Edit button kojim se uređuje naziv ili opis, tj. stari se zamjenjuje novim
+
     editBtn.addEventListener("click",()=>{
 
+        const textAndDesc = newCard.querySelector(".texts");
         const textSpan = newCard.querySelector(".taskText");
-        const input = document.createElement("input");
-        input.type = "text";
-        input.value = textSpan.textContent;
-        newCard.replaceChild(input, textSpan);
-        input.focus();
-        input.classList.add("changeName");
+        const descSpan = newCard.querySelector(".taskDesc");
 
-        input.addEventListener("keypress", (e) => {
+        const inputTask = document.createElement("input");
+        inputTask.type = "text";
+        inputTask.value = textSpan.textContent;
+        inputTask.classList.add("changeName");
+
+        const inputDesc = document.createElement("input");
+        inputDesc.type = "text";
+        inputDesc.value = descSpan.textContent;
+        inputDesc.classList.add("changeName");
+
+        textAndDesc.replaceChild(inputTask, textSpan);
+        textAndDesc.replaceChild(inputDesc, descSpan);
+
+        inputTask.addEventListener("keypress", (e) => {
             if (e.key === "Enter") {
                 const newSpan = document.createElement("span");
                 newSpan.classList.add("taskText");
-                newSpan.textContent = input.value;
-                newCard.replaceChild(newSpan, input);
+                newSpan.textContent = inputTask.value;
+                textAndDesc.replaceChild(newSpan, inputTask);
              }
         });
+        inputDesc.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                const newSpan = document.createElement("span");
+                newSpan.classList.add("taskDesc");
+                newSpan.textContent = inputDesc.value;
+                textAndDesc.replaceChild(newSpan, inputDesc);
+             }
+        });
+    });
 
-    })
-    newCard.appendChild(textSpan);
+    //Done button u samoj kartici, ako se klikne automatski prelazi kartica u done kolonu
+    //Takođe su buttoni disabled jer nema daljeg uređivanja
+
+    doneBtn.addEventListener("click",()=>{
+        const done = document.getElementById("done").querySelector(".tasks");
+        done.appendChild(newCard);
+
+        newCard.setAttribute("draggable",false);
+
+        newCard.classList.add("Done");
+
+        const allButtons = newCard.querySelectorAll("button");
+        allButtons.forEach(btn => {
+            btn.disabled = true;
+        });
+    });
+
+
+    const texts = document.createElement("div");
+    texts.classList.add("texts");
+
+    texts.appendChild(textSpan);
+    texts.appendChild(descSpan);
+
+    newCard.appendChild(texts);
     newCard.appendChild(buttons);
     toDoList.appendChild(newCard);
 
     newTask.value = "";
-
+    newDesc.value = "";
     
 });
 
 const restart = document.getElementById("restart");
 const tasks = document.querySelectorAll(".tasks");
+
+//uklanjanje svih kartica
 
 restart.addEventListener("click",()=>{
     tasks.forEach(t =>{
@@ -75,6 +132,8 @@ restart.addEventListener("click",()=>{
 });
 
 const h2 = document.querySelectorAll(".h2");
+
+//Uređivanje naziva kolone
 
 h2.forEach(h => {
     const editBtnH = document.createElement("button");
@@ -92,7 +151,7 @@ h2.forEach(h => {
 
         h.textContent = "";
         h.appendChild(input2);
-        
+
         input2.focus();
         input2.classList.add("changeName");
 

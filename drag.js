@@ -1,10 +1,13 @@
 //dragging
 
+const editBtn = document.getElementById("editBtn");
+
 document.addEventListener("dragstart",(e)=>{
     if(e.target.classList.contains("card")){
 
-        if(e.target.closest("#done")) return;
+        if(e.target.classList.contains("Done")) return;
         e.target.classList.add("dragging");
+        
     }
 });
 
@@ -25,7 +28,8 @@ columns.forEach(column => {
 
     column.addEventListener("drop",()=>{
         const dragging = document.querySelector(".dragging");
-    
+
+         const tasks= column.querySelector(".tasks");
     
     //U priority koloni ne može biti preko 3 taska
 
@@ -37,6 +41,19 @@ columns.forEach(column => {
             }
         }
 
-        column.appendChild(dragging);
+        tasks.appendChild(dragging);
+
+        //U done koloni nema prevlačenja i buttoni su disabled
+        
+        if(column.id === "done"){
+            dragging.classList.add("Done");
+            dragging.setAttribute("draggable",false);
+            const buttons = dragging.querySelectorAll("button");
+            buttons.forEach(btn => {
+                btn.disabled = true;
+            });
+
+        }
+
     });
 });

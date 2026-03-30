@@ -18,32 +18,53 @@ body{
     align-items: center;
     justify-content: center;
     gap: 0;
-    height: 60px;
-    width: 468px;
+    height: 80px;
+    width: 500px;
     overflow: hidden;
     border-radius: 10px;
     border: 2px solid gray;
 }
-.newTask input{
-    height: 60px;
+.inputs{
+    display: flex;
+    flex-direction: column;
+    gap:0;
+}
+.inputs input{
+    padding-left: 5px;
+}
+#newTask{
+    height: 50px;
+    width: 340px;
+    font-size: 20px;
+    font-weight: bold;
+}
+#newDescription{
+    height: 30px;
     width: 340px;
     font-size: 18px;
+    color: gray;
 }
-.newTask button{
-    height: 64px;
-    width: 64px;
+#add{
+    height: 84px;
+    width: 84px;
     font-size: 40px;
     color:white;
     background-color: #4facfe;
 }
+#add:hover{
+    background-color: #1f91f6;
+}
 #restart{
-    height: 64px;
+    height: 84px;
     color: white;
-    width: 64px;
+    width: 80px;
     font-size: 40px;
     font-weight: bold;
     background: none;
     border: none;
+}
+#restart:hover{
+    background-color: #ab0707;
 }
 .card {
     background: rgba(255, 255, 255, 0.9);
@@ -51,7 +72,7 @@ body{
     margin: 10px 0;
     border-radius: 10px;
     cursor: grab;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
     justify-content: space-between;
@@ -59,11 +80,26 @@ body{
     
 }
 
+.card:hover{
+    background-color: rgba(255, 255, 255, 0.8);
+}
 .taskText {
     max-width: 140px;      
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: bold;
+}
+.taskDesc {
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: gray;
+}
+.texts{
+    display: flex;
+    flex-direction: column;
 }
 .changeName{
     background: none;
@@ -123,6 +159,10 @@ body{
     text-align: center;
 }
 #done .card {
+    color: white;
+    background-color: rgba(100, 255, 180, 0.8);
+}
+.Done {
     color: white;
     background-color: rgba(100, 255, 180, 0.8);
 }
