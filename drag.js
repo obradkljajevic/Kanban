@@ -1,12 +1,14 @@
 //dragging
 
 const editBtn = document.getElementById("editBtn");
+const board = document.querySelector(".kanbanBoard");
 
 document.addEventListener("dragstart",(e)=>{
-    if(e.target.classList.contains("card")){
 
-        if(e.target.classList.contains("Done")) return;
+    if(e.target.classList.contains("card")){
+        if(e.target.classList.contains("Done")) return; 
         e.target.classList.add("dragging");
+        e.target.classList.add("active");
         
     }
 });
@@ -14,46 +16,36 @@ document.addEventListener("dragstart",(e)=>{
 document.addEventListener("dragend",(e)=>{
     if(e.target.classList.contains("card")){
         e.target.classList.remove("dragging");
+        e.target.classList.remove("active");
     }
 });
 
-//drop
 
-const columns = document.querySelectorAll(".column");
+board.addEventListener("dragover", e => e.preventDefault());
 
-columns.forEach(column => {
-    column.addEventListener("dragover",(e)=>{
-        e.preventDefault();
-    });
+//Drop
 
-    column.addEventListener("drop",()=>{
-        const dragging = document.querySelector(".dragging");
+board.addEventListener("drop", e => {
+    const column = e.target.closest(".column"); 
+    if (!column) return;
 
-         const tasks= column.querySelector(".tasks");
-    
-    //U priority koloni ne može biti preko 3 taska
+    const dragging = document.querySelector(".dragging");
+    if (!dragging) return;
 
-        if(column.id === "priority"){
-            const cards = column.querySelectorAll(".card");
-            if(cards.length>=3){
-                alert("You have already reached maximum!");
-                return;
-            }
-        }
+    const task = column.querySelector(".tasks");
 
-        tasks.appendChild(dragging);
+    //Ako je kolona property ne može preko 3 kartice da ima
 
-        //U done koloni nema prevlačenja i buttoni su disabled
-        
-        if(column.id === "done"){
-            dragging.classList.add("Done");
-            dragging.setAttribute("draggable",false);
-            const buttons = dragging.querySelectorAll("button");
-            buttons.forEach(btn => {
-                btn.disabled = true;
-            });
+    if (column.id === "priority" && task.children.length >= 3) {
+        alert("You have already reached maximum!");
+        return;
+    }
 
-        }
+    task.appendChild(dragging);
 
-    });
+    if (column.id === "done") {
+        dragging.classList.add("Done");
+        dragging.setAttribute("draggable", false);
+        dragging.querySelectorAll("button").forEach(btn => btn.disabled = true);
+    }
 });

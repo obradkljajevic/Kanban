@@ -19,10 +19,15 @@ body{
     justify-content: center;
     gap: 0;
     height: 80px;
-    width: 500px;
+    width: 420px;
     overflow: hidden;
     border-radius: 10px;
     border: 2px solid gray;
+}
+.allInputs{
+    margin-top: 20px;
+    display: flex;
+    gap:50px;
 }
 .inputs{
     display: flex;
@@ -43,6 +48,12 @@ body{
     width: 340px;
     font-size: 18px;
     color: gray;
+}
+#newColumn{
+    height: 80px;
+    width: 360px;
+    font-size: 20px;
+    font-weight: bold;
 }
 #add{
     height: 84px;
@@ -66,6 +77,16 @@ body{
 #restart:hover{
     background-color: #ab0707;
 }
+#addColumn{
+    height: 84px;
+    width: 90px;
+    font-size: 40px;
+    color:white;
+    background-color: #4facfe;
+}
+#addColumn:hover{
+    background-color: #1f91f6;
+}
 .card {
     background: rgba(255, 255, 255, 0.9);
     padding: 12px;
@@ -79,7 +100,11 @@ body{
     align-items: center;
     
 }
-
+.card.active{
+    background: #1e1ea2 !important;
+    color: white;
+    opacity: 1;
+}
 .card:hover{
     background-color: rgba(255, 255, 255, 0.8);
 }
@@ -115,13 +140,13 @@ body{
 }
 
 .kanbanBoard{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
     gap: 20px;
     padding: 20px;
     align-items: center;
     justify-content: center;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
 }
 .column {
     flex: 1;
@@ -140,7 +165,8 @@ body{
     text-align: center;
 }
 .dragging{
-    opacity:0.9;
+    opacity: 0.9;
+    cursor: grab;
 }
 .deleteBtn{
     font-size: 20px;
@@ -162,6 +188,7 @@ body{
     font-weight:bold;
     text-align: center;
 }
+
 #done .card {
     color: white;
     background-color: rgba(100, 255, 180, 0.8);
@@ -242,4 +269,3 @@ body{
         min-height: 100px;
     }
 }
-

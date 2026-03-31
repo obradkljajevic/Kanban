@@ -6,16 +6,21 @@
         <meta name="viewport" content="width=device-width">
     </head>
     <body>
-        <div class="newTask">
-            <div class="inputs">
-                <input type="text" id="newTask" placeholder="Add new task">
-                <input type="text" id="newDescription" placeholder="Add description">
+        <div class="allInputs">
+            <div class="newTask">
+                <div class="inputs">
+                    <input type="text" id="newTask" placeholder="Add new task">
+                    <input type="text" id="newDescription" placeholder="Add description">
+                </div>
+                <button id="add">+</button>
+                <button id="restart">⟳</button>
             </div>
-            <button id="add">+</button>
-            <div>
-            <button id="restart">⟳</button>
+            <div class="newTask">
+                <input type="text" id="newColumn" placeholder="Add new column">
+                <button id="addColumn">+</button>
             </div>
         </div>
+        
         <div class="kanbanBoard">
             <div class="column" id="toDo">
                 <h2 class="h2">To Do</h2>

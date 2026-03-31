@@ -121,20 +121,53 @@ document.addEventListener("DOMContentLoaded",()=>{
         
     });
 
-    const restart = document.getElementById("restart");
-    const tasks = document.querySelectorAll(".tasks");
+    //dodavanje nove kolone
 
-    //uklanjanje svih kartica
+    const addColumn = document.getElementById("addColumn");
+    const newColumn = document.getElementById("newColumn");
+    const board = document.querySelector(".kanbanBoard");
 
-    restart.addEventListener("click",()=>{
-        tasks.forEach(t =>{
-            t.textContent="";
-        });
+    addColumn.addEventListener("click",()=>{
+        const col =  newColumn.value.trim();
+        if (!col) return;
+
+        const newColDiv = document.createElement("div");
+        newColDiv.classList.add("column");
+        newColDiv.setAttribute("draggable",true);
+
+        const h2 = document.createElement("h2");
+        h2.classList.add("h2");
+        h2.textContent=col;
+
+        newColDiv.appendChild(h2);
+
+        const tasksDiv = document.createElement("div");
+        tasksDiv.classList.add("tasks");
+        newColDiv.appendChild(tasksDiv);
+
+        //Lista gradijenata koje koristim za nove kolone
+
+        const gradients = [
+            "linear-gradient(120deg, #f6d365, #fda085 100%)",
+            "linear-gradient(120deg, #a1c4fd, #c2e9fb 100%)",
+            "linear-gradient(120deg, #fccb90, #d57eeb 100%)"
+        ];
+
+        const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
+
+        newColDiv.style.background = randomGradient;
+        newColDiv.classList.add("column");
+        newColDiv.classList.add("column2");
+
+        const inProgress = document.getElementById("inProgress");
+        board.insertBefore(newColDiv, inProgress);
+
+        newColumn.value="";
     });
 
-    const h2 = document.querySelectorAll(".h2");
-
     //Uređivanje naziva kolone
+
+    const h2 = document.querySelectorAll(".h2");
 
     h2.forEach(h => {
         const editBtnH = document.createElement("button");
@@ -165,5 +198,19 @@ document.addEventListener("DOMContentLoaded",()=>{
             });
         });
     });
+    const restart = document.getElementById("restart");
+
+    //uklanjanje svih kartica i novih kolona
+
+    restart.addEventListener("click",()=>{
+        document.querySelectorAll(".tasks").forEach(t =>{
+            t.textContent="";
+        });
+        document.querySelectorAll(".column2").forEach(n =>{
+            n.remove();
+        });
+
+    });
+    
 });
     
