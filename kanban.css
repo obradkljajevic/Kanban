@@ -51,7 +51,7 @@ body{
 }
 #newColumn{
     height: 80px;
-    width: 360px;
+    width: 340px;
     font-size: 20px;
     font-weight: bold;
 }
@@ -65,7 +65,7 @@ body{
 #add:hover{
     background-color: #1f91f6;
 }
-#restart{
+.restart{
     height: 84px;
     color: white;
     width: 80px;
@@ -74,18 +74,23 @@ body{
     background: none;
     border: none;
 }
-#restart:hover{
+.restart:hover{
     background-color: #ab0707;
 }
 #addColumn{
     height: 84px;
-    width: 90px;
+    width: 84px;
     font-size: 40px;
     color:white;
     background-color: #4facfe;
 }
 #addColumn:hover{
     background-color: #1f91f6;
+}
+#headerNew{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .card {
     background: rgba(255, 255, 255, 0.9);
@@ -156,6 +161,9 @@ body{
     height: 450px;
     overflow: auto;
 }
+.column:hover{
+    box-shadow: 8px 8px 8px rgba(140, 140, 140, 0.2);
+}
 ::-webkit-scrollbar {
     width:10px;
 }
@@ -163,6 +171,10 @@ body{
     color: white;
     font-weight:bold;
     text-align: center;
+}
+.column button:hover{
+    text-shadow: 2px 2px 2px rgba(140, 140, 140, 0.2);
+    cursor: pointer;
 }
 .dragging{
     opacity: 0.9;
@@ -255,7 +267,7 @@ body{
         font-size: 50px;
         font-weight: bold;
     }
-    #restart{
+    .restart{
         width: 50px;
         font-size: 45px;
     }

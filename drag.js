@@ -46,6 +46,11 @@ board.addEventListener("drop", e => {
     if (column.id === "done") {
         dragging.classList.add("Done");
         dragging.setAttribute("draggable", false);
-        dragging.querySelectorAll("button").forEach(btn => btn.disabled = true);
+        const edit = dragging.querySelector("#edit");
+        const done = dragging.querySelector("#Done")
+        if (edit) {
+            edit.disabled = true;
+            done.disabled = true;
+        }
     }
 });

@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const toDoList = document.getElementById("toDoList");
 
     //Dodavanje novog taska
+
     addButton.addEventListener("click", () => {
         const task = newTask.value.trim();
 
@@ -42,7 +43,9 @@ document.addEventListener("DOMContentLoaded",()=>{
         doneBtn.classList.add("doneBtn");
         deleteBtn.classList.add("deleteBtn");
         editBtn.classList.add("editBtn");
-        
+        editBtn.id="edit";
+        doneBtn.id="Done";
+
         //Delete button kojim se uklanja određena kartica
 
         deleteBtn.addEventListener("click", () => {
@@ -99,10 +102,12 @@ document.addEventListener("DOMContentLoaded",()=>{
 
             newCard.classList.add("Done");
 
-            const allButtons = newCard.querySelectorAll("button");
-            allButtons.forEach(btn => {
-                btn.disabled = true;
-            });
+            const edit = newCard.querySelector("#edit");
+            const Done = newCard.querySelector("#Done");
+            if (edit){
+                edit.disabled = true;
+                Done.disabled = true;
+            }
         });
 
 
@@ -139,6 +144,14 @@ document.addEventListener("DOMContentLoaded",()=>{
         h2.classList.add("h2");
         h2.textContent=col;
 
+        const removeCol = document.createElement("button");
+        removeCol.textContent = "❌";
+        removeCol.classList.add("deleteBtn");
+        h2.appendChild(removeCol);
+
+        removeCol.addEventListener("click",()=>{
+            newColDiv.remove();
+        })
         newColDiv.appendChild(h2);
 
         const tasksDiv = document.createElement("div");
@@ -177,7 +190,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 
         editBtnH.addEventListener("click", () => {
 
-        
             const input2 = document.createElement("input");
             input2.type = "text";
             input2.value = "Enter title"; 
@@ -198,7 +210,9 @@ document.addEventListener("DOMContentLoaded",()=>{
             });
         });
     });
+
     const restart = document.getElementById("restart");
+    const restartCol = document.getElementById("restartColumn");
 
     //uklanjanje svih kartica i novih kolona
 
@@ -206,11 +220,12 @@ document.addEventListener("DOMContentLoaded",()=>{
         document.querySelectorAll(".tasks").forEach(t =>{
             t.textContent="";
         });
-        document.querySelectorAll(".column2").forEach(n =>{
-            n.remove();
-        });
 
     });
-    
+    restartCol.addEventListener("click",()=>{
+        document.querySelectorAll(".column2").forEach(c=>{
+            c.remove();
+        })
+    })
 });
     
