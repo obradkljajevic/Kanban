@@ -106,7 +106,7 @@ body{
     
 }
 .card.active{
-    background: #1e1ea2 !important;
+    background: #dfdd3f !important;
     color: white;
     opacity: 1;
 }
@@ -179,6 +179,10 @@ body{
 .dragging{
     opacity: 0.9;
     cursor: grab;
+}
+.draggingCol{
+    cursor: grab;
+    opacity: 0.9;
 }
 .deleteBtn{
     font-size: 20px;

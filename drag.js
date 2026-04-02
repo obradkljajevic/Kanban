@@ -1,6 +1,5 @@
 //dragging
 
-const editBtn = document.getElementById("editBtn");
 const board = document.querySelector(".kanbanBoard");
 
 document.addEventListener("dragstart",(e)=>{
@@ -11,12 +10,18 @@ document.addEventListener("dragstart",(e)=>{
         e.target.classList.add("active");
         
     }
+    if(e.target.classList.contains("column")){
+        e.target.classList.add("draggingCol");
+    }
 });
 
 document.addEventListener("dragend",(e)=>{
     if(e.target.classList.contains("card")){
         e.target.classList.remove("dragging");
         e.target.classList.remove("active");
+    }
+    if(e.target.classList.contains("column")){
+        e.target.classList.remove("draggingCol");
     }
 });
 
@@ -26,31 +31,49 @@ board.addEventListener("dragover", e => e.preventDefault());
 //Drop
 
 board.addEventListener("drop", e => {
-    const column = e.target.closest(".column"); 
-    if (!column) return;
 
     const dragging = document.querySelector(".dragging");
-    if (!dragging) return;
 
-    const task = column.querySelector(".tasks");
+    const draggingCol = document.querySelector(".draggingCol");
 
-    //Ako je kolona property ne može preko 3 kartice da ima
+    if(dragging){
+        const column = e.target.closest(".column"); 
+        if (!column) return;
 
-    if (column.id === "priority" && task.children.length >= 3) {
-        alert("You have already reached maximum!");
-        return;
-    }
+        const task = column.querySelector(".tasks");
 
-    task.appendChild(dragging);
+        //Ako je kolona property ne može preko 3 kartice da ima
 
-    if (column.id === "done") {
-        dragging.classList.add("Done");
-        dragging.setAttribute("draggable", false);
-        const edit = dragging.querySelector("#edit");
-        const done = dragging.querySelector("#Done")
-        if (edit) {
-            edit.disabled = true;
-            done.disabled = true;
+        if (column.id === "priority" && task.children.length >= 3) {
+            alert("You have already reached maximum!");
+            return;
+        }
+
+        //prevlačenje kartica unutar kolone
+        
+        const targetCard = e.target.closest(".card");
+
+        if (targetCard && targetCard !== dragging) {
+            task.insertBefore(dragging, targetCard);
+        }else{
+            task.appendChild(dragging);
+        }
+
+        if (column.id === "done") {
+            dragging.classList.add("Done");
+            dragging.setAttribute("draggable", false);
+            const edit = dragging.querySelector("#edit");
+            const done = dragging.querySelector("#Done")
+            if (edit) {
+                edit.disabled = true;
+                done.disabled = true;
+            }
         }
     }
+    if(draggingCol){
+        const targetCol = e.target.closest(".column");
+        if(!targetCol) return; 
+        board.insertBefore(draggingCol,targetCol);
+    }
 });
+
