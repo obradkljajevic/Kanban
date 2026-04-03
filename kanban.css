@@ -103,7 +103,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+    transition: transform 0.3 ease;
 }
 .card.active{
     background: #dfdd3f !important;
@@ -133,10 +133,12 @@ body{
     flex-direction: column;
 }
 .changeName{
+    border: none;
+    outline: none;
     background: none;
     font-size: 18px;
     width: 150px;
-    
+    font-style: italic;
 }
 .input2{
     color: white;
@@ -189,6 +191,11 @@ body{
     border: 0;
     background: none;
 }
+.deleteCol{
+    font-size: 20px;
+    border: 0;
+    background: none;
+}
 .editBtn{
     font-size: 20px;
     border: 0;
@@ -237,6 +244,9 @@ body{
     }
     body{
         gap:20px;
+    }
+    .allInputs{
+        flex-direction: column;
     }
 }
 @media (max-width:800px) {
